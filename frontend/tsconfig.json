@@ -7,9 +7,9 @@
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "./frontend",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["app/*"] // Adjusted to point to the `app` directory
     },
 
     // Bundler mode

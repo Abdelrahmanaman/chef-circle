@@ -7,7 +7,6 @@ import {
 import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import globalCSS from "@/styles/global.css?url";
-
 export const Route = createRootRoute({
   head: () => ({
     meta: [

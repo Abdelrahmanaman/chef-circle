@@ -1,10 +1,16 @@
 import { defineConfig } from "@tanstack/start/config";
-import tsConfigPaths from "vite-tsconfig-paths";
+import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
+
 export default defineConfig({
   vite: {
+    resolve: {
+      alias: {
+        "@": "/app",
+      },
+    },
     plugins: [
-      tsConfigPaths({
+      viteTsConfigPaths({
         projects: ["./tsconfig.json"],
       }),
       tailwindcss(),
