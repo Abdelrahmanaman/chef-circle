@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-motion";
+
+@theme default {
+  --color-background: light-dark(#ffffff, #171716);
+  --color-foreground: light-dark(#2a2c32, #f3f3f5);
+  --color-primary: light-dark(#0a0a0b, #3c3c39);
+  --color-primary-foreground: light-dark(#f3f3f5, #f3f3f5);
+  --color-primary-hover: light-dark(#313135, #4a4a45);
+  --color-secondary: light-dark(#ececef, #e9e8ea);
+  --color-secondary-foreground: light-dark(#2a2c32, #171716);
+  --color-secondary-hover: light-dark(#e3e3e8, #ffffff);
+  --color-popover: light-dark(#171716, #2f2f2d);
+  --color-popover-hover: light-dark(#4b4b4a, #464644);
+  --color-destructive: light-dark(#fdeded, #492e32);
+  --color-destructive-foreground: light-dark(#e74b4e, #e95e60);
+  --color-border: light-dark(#e9e8ea, #343432);
+  --color-muted: light-dark(#c5c5c5, #7a7a7a);
+  --color-muted-hover: light-dark(#d4d4d4, #8c8c8c);
+  --color-elevated-1: light-dark(#f6f6f7, #232321);
+  --color-elevated-2: light-dark(#f3f3f5, #464644);
+
+  --text-xs: 0.8rem;
+  --text-sm--line-height: 1.4rem;
+  --text-base: 0.925rem;
+  --text-lg: 0.95rem;
+  --text-xl: 1.07rem;
+  --text-2xl: 1.175rem;
+
+  --breakpoint-xs: 402px;
+
+  --font-primary: "jet_brains_mono", monospace;
+
+  --cursor: default;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted) transparent;
+}
+
+@utility container {
+  padding-inline: 0.875rem;
+  margin-inline: auto;
+  max-width: 724px;
+}
+
+@layer utilities {
+  @media (max-width: 768px) {
+    .pb-safe {
+      padding-bottom: max(env(safe-area-inset-bottom), 0rem);
+    }
+    .pb-safe-1 {
+      padding-bottom: max(env(safe-area-inset-bottom), 0.25rem);
+    }
+    .pb-safe-2 {
+      padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+    }
+    .pb-safe-3 {
+      padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+    }
+    .pb-safe-4 {
+      padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+    }
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-primary);
+}
+body {
+  font-size: var(--text-base);
+  font-weight: 400;
+}
+
+/* reset */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none !important;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
