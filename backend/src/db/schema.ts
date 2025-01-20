@@ -11,7 +11,7 @@ import {
 
 // Users Table
 export const users = pgTable("users", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }), // Auto-incrementing primary key
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(), // Auto-incrementing primary key
   email: varchar("email").unique().notNull(),
   googleId: varchar("google_id").unique(),
   passwordHash: varchar("password_hash"),
@@ -25,7 +25,9 @@ export const users = pgTable("users", {
 
 // Sessions Table (for session storage)
 export const sessions = pgTable("sessions", {
-  id: uuid("id").primaryKey().defaultRandom(), // UUID for session ID
+  id: varchar("id", {
+    length: 255,
+  }).primaryKey(),
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
@@ -35,7 +37,7 @@ export const sessions = pgTable("sessions", {
 
 // Recipes Table
 export const recipes = pgTable("recipes", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   creatorId: integer("creator_id")
     .notNull()
     .references(() => users.id),
@@ -53,7 +55,7 @@ export const recipes = pgTable("recipes", {
 
 // Ingredients Table
 export const ingredients = pgTable("ingredients", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   recipeId: integer("recipe_id")
     .notNull()
     .references(() => recipes.id),
@@ -66,7 +68,7 @@ export const ingredients = pgTable("ingredients", {
 
 // Instructions Table
 export const instructions = pgTable("instructions", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   recipeId: integer("recipe_id")
     .notNull()
     .references(() => recipes.id),
@@ -97,7 +99,7 @@ export const favorites = pgTable(
 
 // Reviews Table
 export const reviews = pgTable("reviews", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
@@ -112,7 +114,7 @@ export const reviews = pgTable("reviews", {
 
 // Comments Table
 export const comments = pgTable("comments", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
@@ -126,7 +128,7 @@ export const comments = pgTable("comments", {
 
 // Subscriptions Table
 export const subscriptions = pgTable("subscriptions", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   subscriberId: integer("subscriber_id")
     .notNull()
     .references(() => users.id),

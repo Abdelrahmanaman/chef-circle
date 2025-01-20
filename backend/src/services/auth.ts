@@ -7,8 +7,8 @@ import type { Session, SessionValidationResult } from "../types/auth";
 import { db } from "../db/db";
 import { sessions, users } from "../db/schema";
 import { eq } from "drizzle-orm";
-import { getCookie, setCookie, deleteCookie } from "hono/cookie";
-import type { Context } from "hono";
+import { setCookie, deleteCookie } from "hono/cookie";
+import { Hono, type Context } from "hono";
 import { env } from "../../env";
 import type { CookieOptions } from "hono/utils/cookie";
 
@@ -94,3 +94,25 @@ export function deleteSessionTokenCookie(c: Context): void {
 
   deleteCookie(c, "session", cookieOptions);
 }
+
+export async function generateHashPassword(password: string): Promise<string> {
+  const hashedPassword = await Bun.password.hash(password, {
+    algorithm: "argon2id",
+    memoryCost: 16384, // Memory usage in KiB (default: 4096)
+    timeCost: 2, // Number of iterations (default: 3)
+  });
+  return hashedPassword;
+}
+
+export async function verifyPassword(
+  password: string,
+  hashedPassword: string
+): Promise<boolean> {
+  return await Bun.password.verify(password, hashedPassword);
+}
+export const loginHandler = new Hono()
+  .get("/", (c: Context) => c.text("Hello World!"))
+  .post("/", async (c: Context) => {
+    console.log(`Request received, ${c.req.parseBody}`);
+    return c.text("Hello World!");
+  });

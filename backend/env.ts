@@ -7,7 +7,7 @@ const envSchema = z.object({
   DB_USER: z.string(),
   DB_PASSWORD: z.string(),
   DATABASE_URL: z.string(),
-  PROD: z.boolean(),
+  PROD: z.string().transform((val) => val === "true" || val === "1"),
 });
 
 export const env = envSchema.parse(process.env);
