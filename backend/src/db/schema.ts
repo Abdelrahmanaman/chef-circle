@@ -30,8 +30,9 @@ export const sessions = pgTable("sessions", {
     .notNull()
     .references(() => users.id),
   expiresAt: timestamp("expires_at").notNull(), // Session expiration time
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow(), // Automatically set to current timestamp
 });
+
 // Recipes Table
 export const recipes = pgTable("recipes", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity({ startWith: 1000 }),
@@ -91,7 +92,7 @@ export const favorites = pgTable(
     return [
       primaryKey({ columns: [table.userId, table.recipeId] }), // Composite primary key
     ];
-  },
+  }
 );
 
 // Reviews Table
