@@ -27,15 +27,17 @@ export const Route = createRootRoute({
         href: globalCSS,
       },
     ],
-    scripts: [
-      {
-        type: "module",
-        children: `import RefreshRuntime from "/_build/@react-refresh";
-    RefreshRuntime.injectIntoGlobalHook(window)
-    window.$RefreshReg$ = () => {}
-    window.$RefreshSig$ = () => (type) => type`,
-      },
-    ],
+    scripts: import.meta.env.DEV
+      ? [
+          {
+            type: "module",
+            children: `import RefreshRuntime from "/_build/@react-refresh";
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type`,
+          },
+        ]
+      : [],
   }),
   component: RootComponent,
 });

@@ -3,23 +3,23 @@
 @plugin "tailwindcss-motion";
 
 @theme default {
-  --color-background: light-dark(#ffffff, #171716);
-  --color-foreground: light-dark(#2a2c32, #f3f3f5);
-  --color-primary: light-dark(#0a0a0b, #3c3c39);
+  --color-background: light-dark(#ffffff, #1c1c21);
+  --color-foreground: light-dark(#121217, #f3f3f5);
+  --color-primary: light-dark(#24222a, #373643);
   --color-primary-foreground: light-dark(#f3f3f5, #f3f3f5);
   --color-primary-hover: light-dark(#313135, #4a4a45);
-  --color-secondary: light-dark(#ececef, #e9e8ea);
-  --color-secondary-foreground: light-dark(#2a2c32, #171716);
-  --color-secondary-hover: light-dark(#e3e3e8, #ffffff);
-  --color-popover: light-dark(#171716, #2f2f2d);
-  --color-popover-hover: light-dark(#4b4b4a, #464644);
+  --color-secondary: light-dark(#ececef, #211f28);
+  --color-secondary-foreground: light-dark(#121217, #1c1c21);
+  --color-secondary-hover: light-dark(#e3e3e8, #2a2c32);
+  --color-popover: light-dark(#ffffff, #24222a);
+  --color-popover-hover: light-dark(#f0f0f0, #373643);
   --color-destructive: light-dark(#fdeded, #492e32);
   --color-destructive-foreground: light-dark(#e74b4e, #e95e60);
   --color-border: light-dark(#e9e8ea, #343432);
   --color-muted: light-dark(#c5c5c5, #7a7a7a);
   --color-muted-hover: light-dark(#d4d4d4, #8c8c8c);
-  --color-elevated-1: light-dark(#f6f6f7, #232321);
-  --color-elevated-2: light-dark(#f3f3f5, #464644);
+  --color-elevated-1: light-dark(#f6f6f7, #211f28);
+  --color-elevated-2: light-dark(#f3f3f5, #373643);
 
   --text-xs: 0.8rem;
   --text-sm--line-height: 1.4rem;
