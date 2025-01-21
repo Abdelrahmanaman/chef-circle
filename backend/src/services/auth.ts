@@ -42,7 +42,13 @@ export async function validateSessionToken(
   const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 
   const result = await db
-    .select({ user: users, session: sessions })
+    .select({
+      user: {
+        id: users.id,
+        email: users.email,
+      },
+      session: sessions,
+    })
     .from(sessions)
     .innerJoin(users, eq(sessions.userId, users.id))
     .where(eq(sessions.id, sessionId));

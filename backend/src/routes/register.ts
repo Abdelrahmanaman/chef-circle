@@ -1,4 +1,4 @@
-import { signUpSchema } from "./../lib/validation";
+import { signUpSchema } from "../lib/zod/auth";
 import { Hono } from "hono";
 import { register } from "../services/register";
 import { ZodError } from "zod";
@@ -15,14 +15,14 @@ registerHandler.post("/", async (c) => {
     return c.json({ message: result.message }, 201);
   } catch (error) {
     if (error instanceof Error) {
+      // Handle Zod validation errors
       if (error instanceof ZodError) {
-        // Handle Zod validation errors
         const errors = error.errors.map((err) => ({
           message: err.message,
         }));
         return c.json(errors[0], 400);
       }
-      return c.json({ error: error.message }, 400); // Return 400 for validation errors
+      return c.json({ error: error.message }, 400);
     } else {
       return c.json({ error: "An unexpected error occurred." }, 500);
     }

@@ -1,4 +1,4 @@
-import { loginSchema } from "../lib/validation";
+import { loginSchema } from "../lib/zod/auth";
 import { Hono } from "hono";
 import type { Context } from "hono";
 import { login } from "../services/login";
@@ -9,14 +9,14 @@ const loginHandler = new Hono()
   .post("/", async (c: Context) => {
     try {
       const rawBody = await c.req.json();
-      const { email, password } = loginSchema.parse(rawBody); // Validate input
+      const { email, password } = loginSchema.parse(rawBody);
+      
 
       const result = await login(email, password);
       return c.json({ message: result.message }, 201);
     } catch (error) {
       if (error instanceof Error) {
         if (error instanceof ZodError) {
-          // Handle Zod validation errors
           const errors = error.errors.map((err) => ({
             message: err.message,
           }));

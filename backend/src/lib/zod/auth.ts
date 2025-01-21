@@ -15,8 +15,10 @@ export type LoginRequest = z.infer<typeof loginSchema>;
 
 export const signUpSchema = z.object({
   email: z.string().email(),
-  name: z.string(),
+  name: z.string().min(3),
   password: strongPasswordRegex,
 });
 
 export type RegisterRequest = z.infer<typeof signUpSchema>;
+
+
